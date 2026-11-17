@@ -29,7 +29,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 
 // 404 Handler
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: `Cannot find route ${req.originalUrl} on this server`

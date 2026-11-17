@@ -105,7 +105,7 @@ const groupOrderSchema = new mongoose.Schema(
 );
 
 // Generate unique readable order code before saving
-groupOrderSchema.pre('save', function (next) {
+groupOrderSchema.pre('save', function () {
   if (!this.orderCode) {
     const randomHex = Math.floor(1000 + Math.random() * 9000);
     this.orderCode = `HC-${this.platform.substring(0, 2).toUpperCase()}-${randomHex}`;
@@ -141,8 +141,6 @@ groupOrderSchema.pre('save', function (next) {
   if (['OPEN', 'TARGET_REACHED'].includes(this.status) && new Date() > new Date(this.joiningDeadline)) {
     this.status = 'EXPIRED';
   }
-
-  next();
 });
 
 module.exports = mongoose.model('GroupOrder', groupOrderSchema);

@@ -56,3 +56,6 @@ build/
 # Operating System Files
 .DS_Store
 Thumbs.db
+
+# MongoDB local database
+server/data/
